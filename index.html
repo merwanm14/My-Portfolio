@@ -339,25 +339,46 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card reveal group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer" onclick="window.open('#', '_blank')">
-                    <div class="overflow-hidden aspect-video">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Project 1" class="w-full h-full object-cover transition-transform duration-500">
+                <!-- Project 1: AWS Event Announcement System -->
+                <div class="project-card reveal group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer" onclick="window.open('http://event-announcement-website14.s3-website-us-east-1.amazonaws.com/', '_blank')">
+                    <div class="overflow-hidden aspect-video relative">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" alt="AWS Event Announcement System" class="w-full h-full object-cover transition-transform duration-500">
+                        <!-- AWS Services Badge Overlay -->
+                        <div class="absolute top-3 right-3 flex gap-1.5">
+                            <span class="px-2 py-1 rounded-md bg-[#232f3e] text-white text-xs font-bold shadow-lg border border-gray-600">AWS</span>
+                        </div>
                     </div>
-                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">E-Commerce Dashboard</h3>
-                        <p class="text-gray-200 text-sm mb-4">Full-stack analytics dashboard with real-time data visualization</p>
-                        <div class="flex gap-2">
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">React</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Node.js</span>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 overflow-y-auto">
+                        <h3 class="text-white text-xl font-bold mb-2">AWS Event Announcement System</h3>
+                        <p class="text-gray-200 text-sm mb-3">
+                            Built a serverless event announcement platform where users can subscribe to email notifications, view a list of events, and create new events through a web form.
+                        </p>
+                        <p class="text-gray-300 text-xs mb-3 leading-relaxed">
+                            <span class="text-yellow-400 font-semibold">Architecture:</span> Static frontend (HTML/CSS) hosted on Amazon S3 with static website hosting. API Gateway exposes REST endpoints (<code class="bg-white/20 px-1 rounded">/create-event</code> and <code class="bg-white/20 px-1 rounded">/subscribe</code>) integrated with AWS Lambda. A Subscription Lambda adds new emails to an SNS topic, while an Event Registration Lambda updates <code class="bg-white/20 px-1 rounded">events.json</code> in S3 and broadcasts notifications via SNS. IAM roles and policies secure access to all AWS resources.
+                        </p>
+                        <p class="text-gray-300 text-xs mb-3 leading-relaxed">
+                            <span class="text-yellow-400 font-semibold">Challenges Overcome:</span> Resolved Lambda syntax errors caused by code misalignment through careful indentation review. Fixed API Gateway deployment failures by correcting Lambda mappings, enabling CORS, and performing thorough API testing.
+                        </p>
+                        <p class="text-emerald-400 text-xs mb-3 font-mono break-all">
+                            http://event-announcement-website14.s3-website-us-east-1.amazonaws.com/
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Amazon S3</span>
+                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">AWS Lambda</span>
+                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">API Gateway</span>
+                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Amazon SNS</span>
+                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">IAM</span>
+                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">HTML/CSS</span>
                         </div>
                     </div>
                     <div class="p-6 group-hover:opacity-0 transition-opacity">
-                        <h3 class="text-xl font-bold mb-2">E-Commerce Dashboard</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Full-stack analytics dashboard</p>
-                        <div class="flex gap-2">
-                            <span class="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-xs">React</span>
-                            <span class="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-xs">Node.js</span>
+                        <h3 class="text-xl font-bold mb-2">AWS Event Announcement System</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Serverless event management platform with email notifications</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">Amazon S3</span>
+                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">AWS Lambda</span>
+                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">API Gateway</span>
+                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">Amazon SNS</span>
                         </div>
                     </div>
                 </div>
