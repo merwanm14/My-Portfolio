@@ -1,602 +1,187 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Software Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
-                        dark: '#0f172a',
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'type': 'type 2.5s steps(40, end), blink .75s step-end infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        type: {
-                            'from': { width: '0' },
-                            'to': { width: '100%' },
-                        },
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .dark .glass {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .typing-container {
-            display: inline-block;
-        }
-        .typing-text {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #6366f1;
-            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
-            display: inline-block;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #6366f1 }
-        }
-        .skill-bar {
-            transition: width 1.5s ease-out;
-        }
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-        .nav-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: #6366f1;
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Merwan Mokhtari — Cloud Computing Portfolio">
+  <title>Merwan Mokhtari | Cloud Computing Portfolio</title>
+  <style>
+    :root{
+      --bg:#08111f; --panel:#0d192b; --panel2:#101f34; --text:#edf4ff;
+      --muted:#a8b7cc; --line:#21324b; --accent:#6ec8ff; --accent2:#8b7cff;
+      --max:1120px; --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at 80% 0%,rgba(110,200,255,.12),transparent 30%),var(--bg);
+      color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    nav{position:sticky;top:0;z-index:10;background:rgba(8,17,31,.84);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:-.03em}
+    .brand span{color:var(--accent)}
+    .navlinks{display:flex;gap:26px;font-size:.92rem;color:var(--muted)}
+    .navlinks a:hover{color:var(--text)}
+    .hero{padding:96px 0 82px}
+    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:55px;align-items:center}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--accent);font-size:.86rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+    .eyebrow:before{content:"";width:28px;height:1px;background:var(--accent)}
+    h1{font-size:clamp(3rem,7vw,5.7rem);line-height:.98;letter-spacing:-.06em;margin:18px 0 24px}
+    .gradient{background:linear-gradient(110deg,#fff 15%,#a8e0ff 55%,#9c91ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:680px;color:var(--muted);font-size:1.14rem}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 17px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:.92rem}
+    .btn.primary{background:var(--text);color:#08111f;border-color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+    .hero-card{background:linear-gradient(145deg,rgba(16,31,52,.95),rgba(8,17,31,.95));border:1px solid var(--line);border-radius:24px;padding:25px;box-shadow:0 25px 70px rgba(0,0,0,.25)}
+    .terminal{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.84rem;color:#b8c7dc}
+    .terminal .green{color:#7ee787}.terminal .blue{color:#79c0ff}.terminal .purple{color:#d2a8ff}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .stat{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
+    .stat strong{display:block;font-size:1.35rem}.stat span{font-size:.76rem;color:var(--muted)}
+    section{padding:82px 0;border-top:1px solid rgba(255,255,255,.06)}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:30px}
+    .section-head h2{margin:0;font-size:2rem;letter-spacing:-.04em}
+    .section-head p{margin:0;color:var(--muted);max-width:590px}
+    .about{display:grid;grid-template-columns:330px 1fr;gap:45px;align-items:start}
+    .profile{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:22px;border:1px solid var(--line);box-shadow:0 22px 60px rgba(0,0,0,.3)}
+    .about-copy p{color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .chip{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:7px 10px;border-radius:999px;color:#c8d5e7;font-size:.8rem}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(16,31,52,.75),rgba(10,20,35,.75))}
+    .project:hover{border-color:#355477;transform:translateY(-2px);transition:.2s}
+    .project-top{display:flex;justify-content:space-between;gap:20px;align-items:start}
+    .project h3{margin:0;font-size:1.16rem;line-height:1.25}
+    .num{color:var(--accent);font-family:ui-monospace,monospace;font-size:.78rem}
+    .project p{color:var(--muted);font-size:.9rem}
+    .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}
+    .tag{font-size:.72rem;color:#cfe1f5;background:#15243a;border-radius:7px;padding:5px 8px}
+    .experience{display:grid;gap:12px}
+    .role{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
+    .role:last-child{border-bottom:0}
+    .date{color:var(--muted);font-size:.85rem}.role h3{margin:0 0 3px;font-size:1.05rem}.role .org{color:var(--accent);font-size:.9rem}
+    .role p{margin:8px 0 0;color:var(--muted);font-size:.9rem}
+    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .skill-group{border:1px solid var(--line);border-radius:16px;padding:20px;background:rgba(255,255,255,.02)}
+    .skill-group h3{margin:0 0 12px;font-size:.95rem}.skill-group p{margin:0;color:var(--muted);font-size:.86rem}
+    .contact{display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;background:linear-gradient(120deg,rgba(110,200,255,.10),rgba(139,124,255,.08));border:1px solid var(--line);border-radius:24px;padding:32px}
+    .contact h2{margin:0 0 7px}.contact p{margin:0;color:var(--muted)}
+    footer{padding:28px 0 42px;color:#73849b;font-size:.78rem}
+    @media(max-width:800px){
+      .navlinks{display:none}.hero{padding-top:70px}.hero-grid,.about{grid-template-columns:1fr}
+      .hero-card{display:none}.projects,.skills{grid-template-columns:1fr}.role{grid-template-columns:1fr;gap:4px}
+      .profile{max-width:360px}.contact{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}
+    }
+  </style>
 </head>
-<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#top">Merwan<span>.</span></a>
+    <div class="navlinks">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold gradient-text cursor-pointer" onclick="window.scrollTo(0,0)">&lt;YN/&gt;</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="nav-link text-sm font-medium hover:text-primary transition-colors">About</a>
-                    <a href="#skills" class="nav-link text-sm font-medium hover:text-primary transition-colors">Skills</a>
-                    <a href="#projects" class="nav-link text-sm font-medium hover:text-primary transition-colors">Projects</a>
-                    <a href="#contact" class="nav-link text-sm font-medium hover:text-primary transition-colors">Contact</a>
-                    <button onclick="toggleDark()" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
-                        <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                    </button>
-                    <a href="#contact" class="px-4 py-2 rounded-lg bg-primary text-white font-medium hover:bg-indigo-600 transition-colors shadow-lg shadow-indigo-500/30">Hire Me</a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-                </div>
-            </div>
+<main id="top">
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Cloud Computing • AWS • Azure</div>
+        <h1>Building reliable systems <span class="gradient">in the cloud.</span></h1>
+        <p>I'm Merwan Mokhtari, a cloud computing professional transitioning from intelligence, analytics, and team leadership into cloud infrastructure, DevOps, cybersecurity, and data engineering.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Explore my projects →</a>
+          <a class="btn" href="#contact">Let's connect</a>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass border-t border-gray-200 dark:border-gray-800">
-            <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-800">About</a>
-                <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-800">Skills</a>
-                <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-800">Projects</a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-800">Contact</a>
-            </div>
+      </div>
+      <div class="hero-card">
+        <div class="terminal">
+          <div><span class="green">$</span> whoami</div>
+          <div style="margin:10px 0 18px">merwan-mokhtari</div>
+          <div><span class="green">$</span> focus</div>
+          <div class="blue">AWS / Azure / Terraform / DevOps</div>
+          <div style="margin-top:16px"><span class="green">$</span> building</div>
+          <div class="purple">scalable • secure • automated</div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        <!-- Background blobs -->
-        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob dark:bg-purple-900 dark:opacity-30"></div>
-        <div class="absolute top-0 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 dark:bg-indigo-900 dark:opacity-30"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000 dark:bg-pink-900 dark:opacity-30"></div>
-
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-sm font-semibold tracking-wide uppercase">
-                Available for hire
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-                Hi, I'm <span class="gradient-text">Your Name</span>
-            </h1>
-            <div class="text-xl md:text-3xl text-gray-600 dark:text-gray-300 mb-8 h-10">
-                <span class="typing-container">
-                    <span class="typing-text" id="typing-text">Full Stack Developer</span>
-                </span>
-            </div>
-            <p class="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
-                I'm a passionate developer who loves building things that live on the internet. 
-                Currently focused on creating accessible, human-centered products.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#projects" class="px-8 py-4 rounded-lg bg-primary text-white font-semibold hover:bg-indigo-600 transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-1">
-                    View My Work
-                </a>
-                <a href="#contact" class="px-8 py-4 rounded-lg border-2 border-gray-300 dark:border-gray-700 font-semibold hover:border-primary hover:text-primary transition-all transform hover:-translate-y-1">
-                    Contact Me
-                </a>
-            </div>
-            
-            <!-- Social Links -->
-            <div class="mt-12 flex justify-center space-x-6">
-                <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors transform hover:scale-110">
-                    <span class="sr-only">GitHub</span>
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors transform hover:scale-110">
-                    <span class="sr-only">LinkedIn</span>
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                </a>
-                <a href="mailto:you@email.com" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors transform hover:scale-110">
-                    <span class="sr-only">Email</span>
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                </a>
-            </div>
+        <div class="stats">
+          <div class="stat"><strong>10+</strong><span>years professional experience</span></div>
+          <div class="stat"><strong>5</strong><span>cloud portfolio projects</span></div>
+          <div class="stat"><strong>2026</strong><span>AWS certifications</span></div>
         </div>
-        
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-gray-400 hover:text-primary transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-            </a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head"><h2>About me</h2><p>Cloud-focused, security-minded, and comfortable turning complex problems into structured solutions.</p></div>
+      <div class="about">
+        <img class="profile" src="assets/profile.jpg" alt="Merwan Mokhtari">
+        <div class="about-copy">
+          <p>I'm a multidisciplinary professional transitioning into cloud computing after more than a decade working in team management, business and intelligence analysis, data analytics, national security, cyber crime, AI/ML, and threat/risk assessment.</p>
+          <p>Since 2025, I've been building hands-on AWS experience through cloud training and practical projects. My portfolio includes three-tier web architecture, multi-cloud disaster recovery, CI/CD, real-time analytics, and machine-learning-based cybersecurity detection.</p>
+          <p>My goal is to bring the same analytical discipline, collaboration, and problem-solving mindset to a cloud engineering or cloud infrastructure role.</p>
+          <div class="chips">
+            <span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">Cloud Security</span><span class="chip">DevOps</span><span class="chip">Data Analytics</span><span class="chip">AI/ML</span><span class="chip">Threat Analysis</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white dark:bg-gray-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="reveal">
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-2xl opacity-30 blur-lg"></div>
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Your Name" class="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto object-cover aspect-square">
-                    </div>
-                </div>
-                <div class="reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
-                    <div class="w-20 h-1 bg-primary rounded mb-6"></div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                        I'm a recent graduate (or self-taught developer) with a passion for creating elegant solutions to complex problems. My journey into tech started when [your story here].
-                    </p>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        When I'm not coding, you can find me [your hobbies]. I believe in continuous learning and am always excited to work with new technologies.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                            <div class="text-2xl font-bold gradient-text">1+</div>
-                            <div class="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
-                        </div>
-                        <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                            <div class="text-2xl font-bold gradient-text">10+</div>
-                            <div class="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
-                        </div>
-                        <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                            <div class="text-2xl font-bold gradient-text">100%</div>
-                            <div class="text-sm text-gray-600 dark:text-gray-400">Commitment</div>
-                        </div>
-                        <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                            <div class="text-2xl font-bold gradient-text">∞</div>
-                            <div class="text-sm text-gray-600 dark:text-gray-400">Curiosity</div>
-                        </div>
-                    </div>
+  <section id="projects">
+    <div class="container">
+      <div class="section-head"><h2>Selected projects</h2><p>Hands-on cloud architectures designed around scalability, automation, security, resilience, and real-world data workflows.</p></div>
+      <div class="projects">
+        <article class="project"><div class="project-top"><h3>Traditional 3-Tier WordPress on AWS</h3><span class="num">01</span></div><p>Designed a production-style WordPress architecture with VPC networking, private EC2 instances, an Application Load Balancer, NAT gateways, EFS, and Amazon RDS.</p><div class="tags"><span class="tag">VPC</span><span class="tag">EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">IAM</span><span class="tag">Security Groups</span></div></article>
+        <article class="project"><div class="project-top"><h3>Multi-Cloud Weather Tracker + DR</h3><span class="num">02</span></div><p>Built a weather application across AWS and Azure with Terraform-managed infrastructure and Route 53 DNS failover for disaster recovery.</p><div class="tags"><span class="tag">AWS S3</span><span class="tag">Azure Blob</span><span class="tag">CloudFront</span><span class="tag">Route 53</span><span class="tag">Terraform</span></div></article>
+        <article class="project"><div class="project-top"><h3>2048 Game CI/CD Pipeline</h3><span class="num">03</span></div><p>Containerized the 2048 game and automated its build, test, and deployment workflow using CodeBuild, CodePipeline, ECR, and ECS Fargate.</p><div class="tags"><span class="tag">Docker</span><span class="tag">ECR</span><span class="tag">ECS Fargate</span><span class="tag">CodeBuild</span><span class="tag">CodePipeline</span></div></article>
+        <article class="project"><div class="project-top"><h3>Near Real-Time Stock Analytics</h3><span class="num">04</span></div><p>Created an event-driven stock data pipeline that streams, processes, stores, analyzes, and alerts on market data with a 30-second processing delay.</p><div class="tags"><span class="tag">Kinesis</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">Athena</span><span class="tag">SNS</span></div></article>
+        <article class="project"><div class="project-top"><h3>Cybersecurity Threat Detection</h3><span class="num">05</span></div><p>Built an end-to-end SageMaker pipeline that preprocesses network logs, trains an XGBoost classifier, and deploys a real-time inference endpoint for malicious activity detection.</p><div class="tags"><span class="tag">SageMaker</span><span class="tag">XGBoost</span><span class="tag">S3</span><span class="tag">Lambda</span><span class="tag">CloudWatch</span><span class="tag">IAM</span></div></article>
+      </div>
+      <p style="color:#71839a;font-size:.78rem;margin-top:18px">Note: the project architectures are currently offline because of ongoing AWS resource costs; code and architecture discussions are available on request.</p>
+    </div>
+  </section>
 
-                    <a href="#" class="inline-flex items-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all">
-                        Download Resume
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="experience">
+    <div class="container">
+      <div class="section-head"><h2>Experience</h2><p>A decade-plus of analytical, leadership, and research experience now applied to cloud technology.</p></div>
+      <div class="experience">
+        <div class="role"><div class="date">2023 — Present</div><div><h3>Senior Intelligence Special Projects Team Lead & Research Analyst</h3><div class="org">Agile Defense / Department of State</div></div></div>
+        <div class="role"><div class="date">2021 — 2023</div><div><h3>Senior All-Source Intelligence Analyst</h3><div class="org">Mayvin / United States Marshals Service</div></div></div>
+        <div class="role"><div class="date">2018 — 2021</div><div><h3>Open Source Intelligence Analyst</h3><div class="org">Orbis Operations</div></div></div>
+        <div class="role"><div class="date">2015 — 2018</div><div><h3>Threat Assessment Analyst</h3><div class="org">The Counterterrorism Group</div></div></div>
+        <div class="role"><div class="date">2025 — Present</div><div><h3>AWS Digital Cloud Training Bootcamp</h3><div class="org">Hands-on cloud training & portfolio development</div><p>Worked with professors, industry professionals, and fellow students while completing practical AWS projects and continuing cloud certification preparation.</p></div></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
-                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Technologies I've been working with recently</p>
-                <div class="w-20 h-1 bg-primary rounded mx-auto mt-4"></div>
-            </div>
+  <section id="skills">
+    <div class="container">
+      <div class="section-head"><h2>Technical toolkit</h2><p>Cloud services and analytical tools represented in my current training and project work.</p></div>
+      <div class="skills">
+        <div class="skill-group"><h3>AWS & Cloud</h3><p>S3 · Lambda · VPC · SageMaker · EC2 · ECS · CloudWatch · IAM · RDS · CodePipeline · CodeBuild · Terraform · DynamoDB · Kinesis · SNS · SQS · Athena · CloudFront · Route 53 · API Gateway</p></div>
+        <div class="skill-group"><h3>Data & Analytics</h3><p>SQL · MySQL · Pandas · Tableau · Power BI · Data visualization · AI/ML · Threat/risk assessment · OSINT/PAI tools</p></div>
+        <div class="skill-group"><h3>Certifications</h3><p>AWS Solutions Architect Associate — 2026 · AWS Certified Cloud Practitioner — 2026 · CompTIA Security+ — in progress · ODNI Intelligence Analysis 101 — 2025 · Scrum Alliance Certified Scrum Master — 2025</p></div>
+      </div>
+    </div>
+  </section>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Frontend -->
-                <div class="reveal glass rounded-2xl p-8 shadow-lg">
-                    <h3 class="text-xl font-bold mb-6 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        Frontend
-                    </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm font-medium">HTML/CSS</span><span class="text-sm text-gray-500">90%</span></div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5"><div class="skill-bar bg-primary h-2.5 rounded-full" style="width: 0%" data-width="90%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm font-medium">JavaScript</span><span class="text-sm text-gray-500">85%</span></div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5"><div class="skill-bar bg-primary h-2.5 rounded-full" style="width: 0%" data-width="85%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm font-medium">React</span><span class="text-sm text-gray-500">80%</span></div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5"><div class="skill-bar bg-primary h-2.5 rounded-full" style="width: 0%" data-width="80%"></div></div>
-                        </div>
-                    </div>
-                </div>
+  <section id="contact">
+    <div class="container">
+      <div class="contact">
+        <div><h2>Let's talk cloud.</h2><p>I'm open to cloud computing, cloud infrastructure, DevOps, cybersecurity, and related opportunities.</p></div>
+        <a class="btn primary" href="mailto:MerwanM14@gmail.com">Email me →</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-                <!-- Backend -->
-                <div class="reveal glass rounded-2xl p-8 shadow-lg">
-                    <h3 class="text-xl font-bold mb-6 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 01-2 2v4a2 2 0 012 2h14a2 2 0 012-2v-4a2 2 0 01-2-2m-2-4h.01M17 16h.01"></path></svg>
-                        Backend
-                    </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm font-medium">Node.js</span><span class="text-sm text-gray-500">75%</span></div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5"><div class="skill-bar bg-secondary h-2.5 rounded-full" style="width: 0%" data-width="75%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm font-medium">Python</span><span class="text-sm text-gray-500">70%</span></div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5"><div class="skill-bar bg-secondary h-2.5 rounded-full" style="width: 0%" data-width="70%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm font-medium">SQL</span><span class="text-sm text-gray-500">65%</span></div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5"><div class="skill-bar bg-secondary h-2.5 rounded-full" style="width: 0%" data-width="65%"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tech Stack Tags -->
-            <div class="mt-12 flex flex-wrap justify-center gap-3 reveal">
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">Git</span>
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">Tailwind CSS</span>
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">TypeScript</span>
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">MongoDB</span>
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">Docker</span>
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">AWS</span>
-                <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow-md text-sm font-medium border border-gray-200 dark:border-gray-700">Figma</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white dark:bg-gray-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Some things I've built</p>
-                <div class="w-20 h-1 bg-primary rounded mx-auto mt-4"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1: AWS Event Announcement System -->
-                <div class="project-card reveal group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer" onclick="window.open('http://event-announcement-website14.s3-website-us-east-1.amazonaws.com/', '_blank')">
-                    <div class="overflow-hidden aspect-video relative">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" alt="AWS Event Announcement System" class="w-full h-full object-cover transition-transform duration-500">
-                        <!-- AWS Services Badge Overlay -->
-                        <div class="absolute top-3 right-3 flex gap-1.5">
-                            <span class="px-2 py-1 rounded-md bg-[#232f3e] text-white text-xs font-bold shadow-lg border border-gray-600">AWS</span>
-                        </div>
-                    </div>
-                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 overflow-y-auto">
-                        <h3 class="text-white text-xl font-bold mb-2">AWS Event Announcement System</h3>
-                        <p class="text-gray-200 text-sm mb-3">
-                            Built a serverless event announcement platform where users can subscribe to email notifications, view a list of events, and create new events through a web form.
-                        </p>
-                        <p class="text-gray-300 text-xs mb-3 leading-relaxed">
-                            <span class="text-yellow-400 font-semibold">Architecture:</span> Static frontend (HTML/CSS) hosted on Amazon S3 with static website hosting. API Gateway exposes REST endpoints (<code class="bg-white/20 px-1 rounded">/create-event</code> and <code class="bg-white/20 px-1 rounded">/subscribe</code>) integrated with AWS Lambda. A Subscription Lambda adds new emails to an SNS topic, while an Event Registration Lambda updates <code class="bg-white/20 px-1 rounded">events.json</code> in S3 and broadcasts notifications via SNS. IAM roles and policies secure access to all AWS resources.
-                        </p>
-                        <p class="text-gray-300 text-xs mb-3 leading-relaxed">
-                            <span class="text-yellow-400 font-semibold">Challenges Overcome:</span> Resolved Lambda syntax errors caused by code misalignment through careful indentation review. Fixed API Gateway deployment failures by correcting Lambda mappings, enabling CORS, and performing thorough API testing.
-                        </p>
-                        <p class="text-emerald-400 text-xs mb-3 font-mono break-all">
-                            http://event-announcement-website14.s3-website-us-east-1.amazonaws.com/
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Amazon S3</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">AWS Lambda</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">API Gateway</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Amazon SNS</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">IAM</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">HTML/CSS</span>
-                        </div>
-                    </div>
-                    <div class="p-6 group-hover:opacity-0 transition-opacity">
-                        <h3 class="text-xl font-bold mb-2">AWS Event Announcement System</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Serverless event management platform with email notifications</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">Amazon S3</span>
-                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">AWS Lambda</span>
-                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">API Gateway</span>
-                            <span class="px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs">Amazon SNS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card reveal group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer" onclick="window.open('#', '_blank')">
-                    <div class="overflow-hidden aspect-video">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop" alt="Project 2" class="w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">Task Management App</h3>
-                        <p class="text-gray-200 text-sm mb-4">Collaborative task manager with real-time updates</p>
-                        <div class="flex gap-2">
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Next.js</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Socket.io</span>
-                        </div>
-                    </div>
-                    <div class="p-6 group-hover:opacity-0 transition-opacity">
-                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Collaborative task manager</p>
-                        <div class="flex gap-2">
-                            <span class="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-xs">Next.js</span>
-                            <span class="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-xs">Socket.io</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card reveal group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 cursor-pointer" onclick="window.open('#', '_blank')">
-                    <div class="overflow-hidden aspect-video">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Project 3" class="w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">Weather API Service</h3>
-                        <p class="text-gray-200 text-sm mb-4">RESTful API with geolocation and caching</p>
-                        <div class="flex gap-2">
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">Python</span>
-                            <span class="px-2 py-1 rounded bg-white/20 text-white text-xs">FastAPI</span>
-                        </div>
-                    </div>
-                    <div class="p-6 group-hover:opacity-0 transition-opacity">
-                        <h3 class="text-xl font-bold mb-2">Weather API Service</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">RESTful API with caching</p>
-                        <div class="flex gap-2">
-                            <span class="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-xs">Python</span>
-                            <span class="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-primary text-xs">FastAPI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12 reveal">
-                <a href="https://github.com" target="_blank" class="inline-flex items-center text-primary font-semibold hover:underline">
-                    View more on GitHub
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-                    <p class="text-gray-600 dark:text-gray-400">Have a question or want to work together?</p>
-                    <div class="w-20 h-1 bg-primary rounded mx-auto mt-4"></div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="reveal">
-                        <h3 class="text-2xl font-bold mb-6">Let's chat</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-8">
-                            I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                        </p>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-primary mr-4">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-500 dark:text-gray-400">Email</div>
-                                    <div class="font-medium">you@email.com</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-primary mr-4">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-500 dark:text-gray-400">Location</div>
-                                    <div class="font-medium">Your City, Country</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="reveal glass rounded-2xl p-8 shadow-lg" onsubmit="event.preventDefault(); alert('Thanks for reaching out! This is a demo form.');">
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Name</label>
-                                <input type="text" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="John Doe" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="john@example.com" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Message</label>
-                                <textarea rows="4" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" placeholder="Your message..." required></textarea>
-                            </div>
-                            <button type="submit" class="w-full py-3 rounded-lg bg-primary text-white font-semibold hover:bg-indigo-600 transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="text-gray-500 dark:text-gray-400 text-sm mb-4 md:mb-0">
-                 Your Name. Built with passion.
-            </div>
-            <div class="flex space-x-6">
-                <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Dark mode toggle
-        function toggleDark() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-        }
-
-        // Check for saved theme preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            document.getElementById('sun-icon').classList.remove('hidden');
-            document.getElementById('moon-icon').classList.add('hidden');
-        } else {
-            document.getElementById('sun-icon').classList.add('hidden');
-            document.getElementById('moon-icon').classList.remove('hidden');
-        }
-
-        // Update icons when toggling
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.target.classList.contains('dark')) {
-                    document.getElementById('sun-icon').classList.remove('hidden');
-                    document.getElementById('moon-icon').classList.add('hidden');
-                } else {
-                    document.getElementById('sun-icon').classList.add('hidden');
-                    document.getElementById('moon-icon').classList.remove('hidden');
-                }
-            });
-        });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    // Animate skill bars when visible
-                    const skillBars = entry.target.querySelectorAll('.skill-bar');
-                    skillBars.forEach(bar => {
-                        setTimeout(() => {
-                            bar.style.width = bar.getAttribute('data-width');
-                        }, 200);
-                    });
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('shadow-md');
-            }
-        });
-
-        // Typing animation cycling
-        const roles = ['Full Stack Developer', 'Problem Solver', 'Lifelong Learner', 'Tech Enthusiast'];
-        let roleIndex = 0;
-        const typingText = document.getElementById('typing-text');
-        
-        setInterval(() => {
-            roleIndex = (roleIndex + 1) % roles.length;
-            typingText.style.animation = 'none';
-            typingText.offsetHeight; // Trigger reflow
-            typingText.textContent = roles[roleIndex];
-            typingText.style.animation = 'typing 3s steps(30, end), blink-caret 0.75s step-end infinite';
-        }, 4000);
-    </script>
+<footer><div class="container">© 2026 Merwan Mokhtari · Cloud Computing Portfolio</div></footer>
 </body>
 </html>
