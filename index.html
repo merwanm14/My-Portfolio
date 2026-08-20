@@ -1,187 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Merwan Mokhtari — Cloud Computing Portfolio">
-  <title>Merwan Mokhtari | Cloud Computing Portfolio</title>
-  <style>
-    :root{
-      --bg:#08111f; --panel:#0d192b; --panel2:#101f34; --text:#edf4ff;
-      --muted:#a8b7cc; --line:#21324b; --accent:#6ec8ff; --accent2:#8b7cff;
-      --max:1120px; --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:radial-gradient(circle at 80% 0%,rgba(110,200,255,.12),transparent 30%),var(--bg);
-      color:var(--text);line-height:1.6}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
-    nav{position:sticky;top:0;z-index:10;background:rgba(8,17,31,.84);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
-    .nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:800;letter-spacing:-.03em}
-    .brand span{color:var(--accent)}
-    .navlinks{display:flex;gap:26px;font-size:.92rem;color:var(--muted)}
-    .navlinks a:hover{color:var(--text)}
-    .hero{padding:96px 0 82px}
-    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:55px;align-items:center}
-    .eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--accent);font-size:.86rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
-    .eyebrow:before{content:"";width:28px;height:1px;background:var(--accent)}
-    h1{font-size:clamp(3rem,7vw,5.7rem);line-height:.98;letter-spacing:-.06em;margin:18px 0 24px}
-    .gradient{background:linear-gradient(110deg,#fff 15%,#a8e0ff 55%,#9c91ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{max-width:680px;color:var(--muted);font-size:1.14rem}
-    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-    .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 17px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:.92rem}
-    .btn.primary{background:var(--text);color:#08111f;border-color:var(--text)}
-    .btn:hover{transform:translateY(-1px)}
-    .hero-card{background:linear-gradient(145deg,rgba(16,31,52,.95),rgba(8,17,31,.95));border:1px solid var(--line);border-radius:24px;padding:25px;box-shadow:0 25px 70px rgba(0,0,0,.25)}
-    .terminal{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.84rem;color:#b8c7dc}
-    .terminal .green{color:#7ee787}.terminal .blue{color:#79c0ff}.terminal .purple{color:#d2a8ff}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-    .stat{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
-    .stat strong{display:block;font-size:1.35rem}.stat span{font-size:.76rem;color:var(--muted)}
-    section{padding:82px 0;border-top:1px solid rgba(255,255,255,.06)}
-    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:30px}
-    .section-head h2{margin:0;font-size:2rem;letter-spacing:-.04em}
-    .section-head p{margin:0;color:var(--muted);max-width:590px}
-    .about{display:grid;grid-template-columns:330px 1fr;gap:45px;align-items:start}
-    .profile{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:22px;border:1px solid var(--line);box-shadow:0 22px 60px rgba(0,0,0,.3)}
-    .about-copy p{color:var(--muted)}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-    .chip{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:7px 10px;border-radius:999px;color:#c8d5e7;font-size:.8rem}
-    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .project{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(16,31,52,.75),rgba(10,20,35,.75))}
-    .project:hover{border-color:#355477;transform:translateY(-2px);transition:.2s}
-    .project-top{display:flex;justify-content:space-between;gap:20px;align-items:start}
-    .project h3{margin:0;font-size:1.16rem;line-height:1.25}
-    .num{color:var(--accent);font-family:ui-monospace,monospace;font-size:.78rem}
-    .project p{color:var(--muted);font-size:.9rem}
-    .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}
-    .tag{font-size:.72rem;color:#cfe1f5;background:#15243a;border-radius:7px;padding:5px 8px}
-    .experience{display:grid;gap:12px}
-    .role{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
-    .role:last-child{border-bottom:0}
-    .date{color:var(--muted);font-size:.85rem}.role h3{margin:0 0 3px;font-size:1.05rem}.role .org{color:var(--accent);font-size:.9rem}
-    .role p{margin:8px 0 0;color:var(--muted);font-size:.9rem}
-    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .skill-group{border:1px solid var(--line);border-radius:16px;padding:20px;background:rgba(255,255,255,.02)}
-    .skill-group h3{margin:0 0 12px;font-size:.95rem}.skill-group p{margin:0;color:var(--muted);font-size:.86rem}
-    .contact{display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;background:linear-gradient(120deg,rgba(110,200,255,.10),rgba(139,124,255,.08));border:1px solid var(--line);border-radius:24px;padding:32px}
-    .contact h2{margin:0 0 7px}.contact p{margin:0;color:var(--muted)}
-    footer{padding:28px 0 42px;color:#73849b;font-size:.78rem}
-    @media(max-width:800px){
-      .navlinks{display:none}.hero{padding-top:70px}.hero-grid,.about{grid-template-columns:1fr}
-      .hero-card{display:none}.projects,.skills{grid-template-columns:1fr}.role{grid-template-columns:1fr;gap:4px}
-      .profile{max-width:360px}.contact{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Merwan Mokhtari — Cloud Computing Portfolio">
+<title>Merwan Mokhtari | Cloud Computing</title>
+<style>
+:root{
+ --bg:#f6f8fb;--white:#fff;--ink:#101828;--muted:#667085;--line:#e4e7ec;
+ --blue:#1769e0;--blue-soft:#eaf2ff;--dark:#101828;--max:1120px;--radius:18px;
+ --shadow:0 12px 35px rgba(16,24,40,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+body.modal-open{overflow:hidden}
+button,a{font:inherit}a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),calc(100% - 36px));margin:auto}
+nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(228,231,236,.85)}
+.nav{height:66px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:850;letter-spacing:-.045em}.logo span{color:var(--blue)}
+.navlinks{display:flex;gap:23px;color:var(--muted);font-size:.88rem}
+.navlinks a:hover{color:var(--ink)}
+.hero{padding:86px 0 72px;background:linear-gradient(180deg,#fff 0%,#f6f8fb 100%)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:.75rem;font-weight:850;text-transform:uppercase;letter-spacing:.12em}
+.kicker:before{content:"";width:25px;height:2px;background:var(--blue)}
+h1{font-size:clamp(3.2rem,7vw,5.7rem);line-height:.95;letter-spacing:-.065em;margin:14px 0 22px;max-width:760px}
+.lede{font-size:1.08rem;color:var(--muted);max-width:670px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--line);border-radius:11px;background:#fff;font-weight:800;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn.primary{background:var(--dark);border-color:var(--dark);color:#fff}
+.hero-panel{background:var(--dark);color:#fff;border-radius:24px;padding:27px;box-shadow:0 25px 70px rgba(16,24,40,.20)}
+.panel-kicker{font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;color:#98a2b3;font-weight:800}
+.panel-title{font-size:2rem;font-weight:850;letter-spacing:-.05em;margin:6px 0 21px}
+.panel-row{border-top:1px solid rgba(255,255,255,.12);padding:11px 0;display:flex;justify-content:space-between;gap:18px;font-size:.83rem;color:#d0d5dd}
+.panel-row strong{color:#fff}
+.snapshot{padding:35px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.snapshot-card{border:1px solid var(--line);border-radius:16px;padding:21px;background:#fff}
+.snapshot-card h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin:0 0 13px}
+.cert-list{display:flex;flex-wrap:wrap;gap:8px}
+.cert{background:var(--blue-soft);color:#184b9d;border:1px solid #cfe0ff;padding:8px 10px;border-radius:9px;font-size:.78rem;font-weight:750}
+.tech-list{display:flex;flex-wrap:wrap;gap:7px}
+.tech{background:#f2f4f7;color:#344054;padding:6px 8px;border-radius:7px;font-size:.72rem;font-weight:650}
+section{padding:75px 0;border-top:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:28px}
+.section-head h2{margin:0;font-size:2rem;letter-spacing:-.045em}
+.section-head p{margin:0;color:var(--muted);max-width:610px}
+.about{display:grid;grid-template-columns:310px 1fr;gap:44px;align-items:start}
+.photo-wrap{position:relative}
+.photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);background:#e9eef5}
+.photo-label{position:absolute;bottom:12px;left:12px;right:12px;background:rgba(16,24,40,.88);color:#fff;border-radius:10px;padding:8px 10px;font-size:.7rem}
+.about-copy p{color:var(--muted);margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}
+.chip{border:1px solid var(--line);background:#fff;padding:6px 9px;border-radius:999px;font-size:.73rem;color:#475467}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.project{position:relative;text-align:left;border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:22px;cursor:pointer;box-shadow:0 3px 15px rgba(16,24,40,.045);transition:.18s;overflow:hidden}
+.project:hover{transform:translateY(-3px);border-color:#b6cdf6;box-shadow:var(--shadow)}
+.project:after{content:"";position:absolute;width:145px;height:145px;right:-75px;bottom:-78px;background:var(--blue-soft);border-radius:50%}
+.project-top{display:flex;justify-content:space-between;align-items:start;gap:16px}
+.project h3{font-size:1.06rem;line-height:1.25;margin:0}
+.project-num{color:var(--blue);font:800 .7rem ui-monospace,monospace}
+.project p{color:var(--muted);font-size:.86rem;margin:12px 0 15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}
+.tag{background:#f2f4f7;color:#475467;padding:4px 7px;border-radius:6px;font-size:.68rem}
+.project-open{display:block;margin-top:15px;color:var(--blue);font-size:.76rem;font-weight:850;position:relative;z-index:1}
+.project-note{font-size:.73rem;color:#98a2b3;margin-top:15px}
+.timeline{border-left:2px solid #d0d5dd;margin-left:8px;padding-left:27px}
+.role{position:relative;padding-bottom:27px}
+.role:last-child{padding-bottom:0}
+.role:before{content:"";position:absolute;left:-35px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px var(--blue-soft)}
+.role-date{color:var(--blue);font-size:.72rem;font-weight:850;text-transform:uppercase;letter-spacing:.07em}
+.role h3{font-size:1rem;margin:3px 0 0}.role .org{font-size:.84rem;color:var(--muted)}.role p{font-size:.84rem;color:var(--muted);margin:7px 0 0}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.skill-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px}
+.skill-card h3{font-size:.9rem;margin:0 0 9px}.skill-card p{font-size:.79rem;color:var(--muted);margin:0}
+.contact{background:var(--dark);color:#fff;border-radius:22px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:25px}
+.contact h2{margin:0 0 4px;letter-spacing:-.04em}.contact p{margin:0;color:#98a2b3}.contact .btn{background:#fff;color:var(--dark);border-color:#fff}
+footer{padding:27px 0 40px;color:#98a2b3;font-size:.74rem}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(16,24,40,.72);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:18px}
+.modal.show{display:flex}
+.modal-box{width:min(1080px,100%);height:min(90vh,900px);background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 100px rgba(0,0,0,.4)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 16px;border-bottom:1px solid var(--line)}
+.modal-title{font-weight:850;letter-spacing:-.02em}.modal-sub{font-size:.72rem;color:var(--muted)}
+.modal-actions{display:flex;gap:7px;align-items:center}
+.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 10px;cursor:pointer;font-weight:800}
+.icon-btn:hover{background:#f2f4f7}
+.pdf-frame{border:0;width:100%;height:100%;background:#f2f4f7}
+@media(max-width:820px){
+ .navlinks{display:none}.hero{padding-top:68px}.hero-grid,.about,.snapshot-grid{grid-template-columns:1fr}
+ .hero-panel{display:none}.projects-grid,.skills-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:9px}
+ .photo{max-width:360px}.contact{display:block}.contact .btn{margin-top:18px}
+}
+@media(max-width:520px){h1{font-size:3rem}.container{width:min(var(--max),calc(100% - 28px))}.modal{padding:7px}.modal-box{height:94vh}.modal-sub{display:none}}
+</style>
 </head>
 <body>
 <nav>
-  <div class="container nav-inner">
-    <a class="brand" href="#top">Merwan<span>.</span></a>
-    <div class="navlinks">
-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
-    </div>
+ <div class="container nav">
+  <a class="logo" href="#top">Merwan<span>.</span></a>
+  <div class="navlinks">
+   <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
   </div>
+ </div>
 </nav>
 
-<main id="top">
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">Cloud Computing • AWS • Azure</div>
-        <h1>Building reliable systems <span class="gradient">in the cloud.</span></h1>
-        <p>I'm Merwan Mokhtari, a cloud computing professional transitioning from intelligence, analytics, and team leadership into cloud infrastructure, DevOps, cybersecurity, and data engineering.</p>
-        <div class="actions">
-          <a class="btn primary" href="#projects">Explore my projects →</a>
-          <a class="btn" href="#contact">Let's connect</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="terminal">
-          <div><span class="green">$</span> whoami</div>
-          <div style="margin:10px 0 18px">merwan-mokhtari</div>
-          <div><span class="green">$</span> focus</div>
-          <div class="blue">AWS / Azure / Terraform / DevOps</div>
-          <div style="margin-top:16px"><span class="green">$</span> building</div>
-          <div class="purple">scalable • secure • automated</div>
-        </div>
-        <div class="stats">
-          <div class="stat"><strong>10+</strong><span>years professional experience</span></div>
-          <div class="stat"><strong>5</strong><span>cloud portfolio projects</span></div>
-          <div class="stat"><strong>2026</strong><span>AWS certifications</span></div>
-        </div>
-      </div>
-    </div>
-  </header>
+<header class="hero" id="top">
+ <div class="container hero-grid">
+  <div>
+   <div class="kicker">Cloud Computing · AWS · Azure</div>
+   <h1>Building reliable systems in the cloud.</h1>
+   <p class="lede">I'm Merwan Mokhtari, a cloud computing professional transitioning from intelligence, analytics, and team leadership into cloud infrastructure, DevOps, cybersecurity, and data engineering.</p>
+   <div class="actions">
+    <a class="btn primary" href="#projects">View my projects →</a>
+    <a class="btn" href="#contact">Get in touch</a>
+   </div>
+  </div>
+  <aside class="hero-panel">
+   <div class="panel-kicker">Current focus</div>
+   <div class="panel-title">Cloud + Security</div>
+   <div class="panel-row"><span>Cloud</span><strong>AWS / Azure</strong></div>
+   <div class="panel-row"><span>Infrastructure</span><strong>Terraform</strong></div>
+   <div class="panel-row"><span>DevOps</span><strong>CI/CD</strong></div>
+   <div class="panel-row"><span>Data</span><strong>Analytics / AI/ML</strong></div>
+  </aside>
+ </div>
+</header>
 
-  <section id="about">
-    <div class="container">
-      <div class="section-head"><h2>About me</h2><p>Cloud-focused, security-minded, and comfortable turning complex problems into structured solutions.</p></div>
-      <div class="about">
-        <img class="profile" src="assets/profile.jpg" alt="Merwan Mokhtari">
-        <div class="about-copy">
-          <p>I'm a multidisciplinary professional transitioning into cloud computing after more than a decade working in team management, business and intelligence analysis, data analytics, national security, cyber crime, AI/ML, and threat/risk assessment.</p>
-          <p>Since 2025, I've been building hands-on AWS experience through cloud training and practical projects. My portfolio includes three-tier web architecture, multi-cloud disaster recovery, CI/CD, real-time analytics, and machine-learning-based cybersecurity detection.</p>
-          <p>My goal is to bring the same analytical discipline, collaboration, and problem-solving mindset to a cloud engineering or cloud infrastructure role.</p>
-          <div class="chips">
-            <span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">Cloud Security</span><span class="chip">DevOps</span><span class="chip">Data Analytics</span><span class="chip">AI/ML</span><span class="chip">Threat Analysis</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="snapshot">
+ <div class="container snapshot-grid">
+  <div class="snapshot-card">
+   <h2>Certifications</h2>
+   <div class="cert-list">
+    <span class="cert">AWS Solutions Architect Associate · 2026</span>
+    <span class="cert">AWS Certified Cloud Practitioner · 2026</span>
+    <span class="cert">CompTIA Security+ · In Progress</span>
+    <span class="cert">ODNI Intelligence Analysis 101 · 2025</span>
+    <span class="cert">Certified Scrum Master · 2025</span>
+   </div>
+  </div>
+  <div class="snapshot-card">
+   <h2>Technical Skills</h2>
+   <div class="tech-list">
+    <span class="tech">S3</span><span class="tech">Lambda</span><span class="tech">VPC</span><span class="tech">SageMaker</span><span class="tech">EC2</span><span class="tech">ECS</span><span class="tech">CloudWatch</span><span class="tech">IAM</span><span class="tech">RDS</span><span class="tech">CodePipeline</span><span class="tech">CodeBuild</span><span class="tech">Terraform</span><span class="tech">DynamoDB</span><span class="tech">Kinesis</span><span class="tech">SNS</span><span class="tech">SQS</span><span class="tech">Athena</span><span class="tech">CloudFront</span><span class="tech">Route 53</span><span class="tech">API Gateway</span><span class="tech">SQL / MySQL</span><span class="tech">Tableau</span><span class="tech">Power BI</span>
+   </div>
+  </div>
+ </div>
+</section>
 
-  <section id="projects">
-    <div class="container">
-      <div class="section-head"><h2>Selected projects</h2><p>Hands-on cloud architectures designed around scalability, automation, security, resilience, and real-world data workflows.</p></div>
-      <div class="projects">
-        <article class="project"><div class="project-top"><h3>Traditional 3-Tier WordPress on AWS</h3><span class="num">01</span></div><p>Designed a production-style WordPress architecture with VPC networking, private EC2 instances, an Application Load Balancer, NAT gateways, EFS, and Amazon RDS.</p><div class="tags"><span class="tag">VPC</span><span class="tag">EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">IAM</span><span class="tag">Security Groups</span></div></article>
-        <article class="project"><div class="project-top"><h3>Multi-Cloud Weather Tracker + DR</h3><span class="num">02</span></div><p>Built a weather application across AWS and Azure with Terraform-managed infrastructure and Route 53 DNS failover for disaster recovery.</p><div class="tags"><span class="tag">AWS S3</span><span class="tag">Azure Blob</span><span class="tag">CloudFront</span><span class="tag">Route 53</span><span class="tag">Terraform</span></div></article>
-        <article class="project"><div class="project-top"><h3>2048 Game CI/CD Pipeline</h3><span class="num">03</span></div><p>Containerized the 2048 game and automated its build, test, and deployment workflow using CodeBuild, CodePipeline, ECR, and ECS Fargate.</p><div class="tags"><span class="tag">Docker</span><span class="tag">ECR</span><span class="tag">ECS Fargate</span><span class="tag">CodeBuild</span><span class="tag">CodePipeline</span></div></article>
-        <article class="project"><div class="project-top"><h3>Near Real-Time Stock Analytics</h3><span class="num">04</span></div><p>Created an event-driven stock data pipeline that streams, processes, stores, analyzes, and alerts on market data with a 30-second processing delay.</p><div class="tags"><span class="tag">Kinesis</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">Athena</span><span class="tag">SNS</span></div></article>
-        <article class="project"><div class="project-top"><h3>Cybersecurity Threat Detection</h3><span class="num">05</span></div><p>Built an end-to-end SageMaker pipeline that preprocesses network logs, trains an XGBoost classifier, and deploys a real-time inference endpoint for malicious activity detection.</p><div class="tags"><span class="tag">SageMaker</span><span class="tag">XGBoost</span><span class="tag">S3</span><span class="tag">Lambda</span><span class="tag">CloudWatch</span><span class="tag">IAM</span></div></article>
-      </div>
-      <p style="color:#71839a;font-size:.78rem;margin-top:18px">Note: the project architectures are currently offline because of ongoing AWS resource costs; code and architecture discussions are available on request.</p>
-    </div>
-  </section>
+<section id="about">
+ <div class="container">
+  <div class="section-head"><h2>About me</h2><p>Analytical, security-minded, and focused on building practical cloud skills.</p></div>
+  <div class="about">
+   <div class="photo-wrap">
+    <img class="photo" src="assets/mer-pic.jpg" alt="Merwan Mokhtari">
+    <div class="photo-label">Merwan Mokhtari · Cloud Computing</div>
+   </div>
+   <div class="about-copy">
+    <p>I'm a multidisciplinary professional transitioning into cloud computing after more than a decade working in team management, business and intelligence analysis, data analytics, national security, cyber crime, AI/ML, and threat/risk assessment.</p>
+    <p>Since 2025, I've been building hands-on AWS experience through cloud training and practical projects. My portfolio includes three-tier web architecture, multi-cloud disaster recovery, CI/CD, near real-time analytics, and machine-learning-based cybersecurity detection.</p>
+    <p>I'm looking to bring that analytical discipline, collaboration, and problem-solving mindset into a cloud engineering, cloud infrastructure, DevOps, or cloud security role.</p>
+    <div class="chips"><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">Cloud Security</span><span class="chip">DevOps</span><span class="chip">Data Analytics</span><span class="chip">AI/ML</span></div>
+   </div>
+  </div>
+ </div>
+</section>
 
-  <section id="experience">
-    <div class="container">
-      <div class="section-head"><h2>Experience</h2><p>A decade-plus of analytical, leadership, and research experience now applied to cloud technology.</p></div>
-      <div class="experience">
-        <div class="role"><div class="date">2023 — Present</div><div><h3>Senior Intelligence Special Projects Team Lead & Research Analyst</h3><div class="org">Agile Defense / Department of State</div></div></div>
-        <div class="role"><div class="date">2021 — 2023</div><div><h3>Senior All-Source Intelligence Analyst</h3><div class="org">Mayvin / United States Marshals Service</div></div></div>
-        <div class="role"><div class="date">2018 — 2021</div><div><h3>Open Source Intelligence Analyst</h3><div class="org">Orbis Operations</div></div></div>
-        <div class="role"><div class="date">2015 — 2018</div><div><h3>Threat Assessment Analyst</h3><div class="org">The Counterterrorism Group</div></div></div>
-        <div class="role"><div class="date">2025 — Present</div><div><h3>AWS Digital Cloud Training Bootcamp</h3><div class="org">Hands-on cloud training & portfolio development</div><p>Worked with professors, industry professionals, and fellow students while completing practical AWS projects and continuing cloud certification preparation.</p></div></div>
-      </div>
-    </div>
-  </section>
+<section id="projects">
+ <div class="container">
+  <div class="section-head"><h2>Projects</h2><p>Click any project to open the original project PDF directly inside the site.</p></div>
+  <div class="projects-grid">
+   <button class="project" onclick="openPdf('Traditional 3-Tier WordPress Deployment on AWS','projects/wordpress-3-tier.pdf')">
+    <div class="project-top"><h3>Traditional 3-Tier WordPress Deployment on AWS</h3><span class="project-num">01</span></div>
+    <p>Scalable WordPress architecture using VPC networking, private EC2 instances, ALB, NAT gateways, EFS, and RDS.</p>
+    <div class="tags"><span class="tag">VPC</span><span class="tag">EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">IAM</span></div>
+    <span class="project-open">Open project PDF →</span>
+   </button>
+   <button class="project" onclick="openPdf('Cybersecurity Threat Detection with Amazon SageMaker','projects/cybersecurity-sagemaker.pdf')">
+    <div class="project-top"><h3>Cybersecurity Threat Detection with Amazon SageMaker</h3><span class="project-num">02</span></div>
+    <p>End-to-end ML pipeline for preprocessing network traffic, training XGBoost, and detecting malicious activity.</p>
+    <div class="tags"><span class="tag">SageMaker</span><span class="tag">XGBoost</span><span class="tag">S3</span><span class="tag">Lambda</span><span class="tag">CloudWatch</span></div>
+    <span class="project-open">Open project PDF →</span>
+   </button>
+   <button class="project" onclick="openPdf('CI/CD Pipeline for the 2048 Game','projects/cicd-2048.pdf')">
+    <div class="project-top"><h3>CI/CD Pipeline for the 2048 Game</h3><span class="project-num">03</span></div>
+    <p>Dockerized application deployment automated with CodePipeline, CodeBuild, ECR, and ECS Fargate.</p>
+    <div class="tags"><span class="tag">Docker</span><span class="tag">ECR</span><span class="tag">ECS Fargate</span><span class="tag">CodeBuild</span><span class="tag">CodePipeline</span></div>
+    <span class="project-open">Open project PDF →</span>
+   </button>
+   <button class="project" onclick="openPdf('Multi-Cloud Weather Tracker with Disaster Recovery','projects/multicloud-weather.pdf')">
+    <div class="project-top"><h3>Multi-Cloud Weather Tracker + Disaster Recovery</h3><span class="project-num">04</span></div>
+    <p>Weather application deployed across AWS and Azure with Terraform and Route 53 DNS failover.</p>
+    <div class="tags"><span class="tag">AWS S3</span><span class="tag">Azure Blob</span><span class="tag">CloudFront</span><span class="tag">Route 53</span><span class="tag">Terraform</span></div>
+    <span class="project-open">Open project PDF →</span>
+   </button>
+   <button class="project" onclick="openPdf('Stock Market Near Real-Time Data Analytics Pipeline','projects/stock-analytics.pdf')">
+    <div class="project-top"><h3>Stock Market Near Real-Time Data Analytics</h3><span class="project-num">05</span></div>
+    <p>Event-driven pipeline using Kinesis, Lambda, DynamoDB, S3, Athena, and SNS for processing and alerts.</p>
+    <div class="tags"><span class="tag">Kinesis</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">Athena</span><span class="tag">SNS</span></div>
+    <span class="project-open">Open project PDF →</span>
+   </button>
+  </div>
+  <div class="project-note">The project PDFs note that the live architectures are currently offline due to ongoing AWS resource costs; code and architecture discussions are available on request.</div>
+ </div>
+</section>
 
-  <section id="skills">
-    <div class="container">
-      <div class="section-head"><h2>Technical toolkit</h2><p>Cloud services and analytical tools represented in my current training and project work.</p></div>
-      <div class="skills">
-        <div class="skill-group"><h3>AWS & Cloud</h3><p>S3 · Lambda · VPC · SageMaker · EC2 · ECS · CloudWatch · IAM · RDS · CodePipeline · CodeBuild · Terraform · DynamoDB · Kinesis · SNS · SQS · Athena · CloudFront · Route 53 · API Gateway</p></div>
-        <div class="skill-group"><h3>Data & Analytics</h3><p>SQL · MySQL · Pandas · Tableau · Power BI · Data visualization · AI/ML · Threat/risk assessment · OSINT/PAI tools</p></div>
-        <div class="skill-group"><h3>Certifications</h3><p>AWS Solutions Architect Associate — 2026 · AWS Certified Cloud Practitioner — 2026 · CompTIA Security+ — in progress · ODNI Intelligence Analysis 101 — 2025 · Scrum Alliance Certified Scrum Master — 2025</p></div>
-      </div>
-    </div>
-  </section>
+<section id="experience">
+ <div class="container">
+  <div class="section-head"><h2>Experience</h2><p>A decade-plus of research, analysis, leadership, and problem-solving experience.</p></div>
+  <div class="timeline">
+   <div class="role"><div class="role-date">2023 — Present</div><h3>Senior Intelligence Special Projects Team Lead & Research Analyst</h3><div class="org">Agile Defense / Department of State</div></div>
+   <div class="role"><div class="role-date">2021 — 2023</div><h3>Senior All-Source Intelligence Analyst</h3><div class="org">Mayvin / United States Marshals Service</div></div>
+   <div class="role"><div class="role-date">2018 — 2021</div><h3>Open Source Intelligence Analyst</h3><div class="org">Orbis Operations</div></div>
+   <div class="role"><div class="role-date">2015 — 2018</div><h3>Threat Assessment Analyst</h3><div class="org">The Counterterrorism Group</div></div>
+   <div class="role"><div class="role-date">2025 — Present</div><h3>AWS Digital Cloud Training Bootcamp</h3><div class="org">Cloud training & hands-on portfolio development</div><p>Hands-on AWS learning with professors, industry professionals, and fellow students, including multiple practical cloud projects.</p></div>
+  </div>
+ </div>
+</section>
 
-  <section id="contact">
-    <div class="container">
-      <div class="contact">
-        <div><h2>Let's talk cloud.</h2><p>I'm open to cloud computing, cloud infrastructure, DevOps, cybersecurity, and related opportunities.</p></div>
-        <a class="btn primary" href="mailto:MerwanM14@gmail.com">Email me →</a>
-      </div>
-    </div>
-  </section>
-</main>
+<section id="skills">
+ <div class="container">
+  <div class="section-head"><h2>Technical toolkit</h2><p>A closer look at the cloud, data, and analytical tools represented in the portfolio.</p></div>
+  <div class="skills-grid">
+   <div class="skill-card"><h3>AWS & Infrastructure</h3><p>S3 · Lambda · VPC · SageMaker · EC2 · ECS · CloudWatch · IAM · RDS · CodePipeline · CodeBuild · Terraform · DynamoDB · Kinesis · SNS · SQS · Athena · CloudFront · Route 53 · API Gateway</p></div>
+   <div class="skill-card"><h3>Data & Analytics</h3><p>SQL · MySQL · Pandas · Tableau · Power BI · Data visualization · AI/ML · Threat/risk assessment · OSINT/PAI tools</p></div>
+   <div class="skill-card"><h3>Certifications</h3><p>AWS Solutions Architect Associate — 2026 · AWS Certified Cloud Practitioner — 2026 · CompTIA Security+ — in progress · ODNI Intelligence Analysis 101 — 2025 · Scrum Alliance Certified Scrum Master — 2025</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="container">
+  <div class="contact">
+   <div><h2>Let's talk cloud.</h2><p>Open to cloud computing, infrastructure, DevOps, cybersecurity, and related opportunities.</p></div>
+   <a class="btn" href="mailto:MerwanM14@gmail.com">Email me →</a>
+  </div>
+ </div>
+</section>
 
 <footer><div class="container">© 2026 Merwan Mokhtari · Cloud Computing Portfolio</div></footer>
+
+<div class="modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="backdropClose(event)">
+ <div class="modal-box">
+  <div class="modal-head">
+   <div><div class="modal-title" id="modalTitle">Project PDF</div><div class="modal-sub">Original project document</div></div>
+   <div class="modal-actions">
+    <a class="icon-btn" id="pdfNew" href="#" target="_blank" rel="noopener">Open ↗</a>
+    <button class="icon-btn" onclick="closePdf()" aria-label="Close">Close</button>
+   </div>
+  </div>
+  <iframe class="pdf-frame" id="pdfFrame" title="Project PDF"></iframe>
+ </div>
+</div>
+
+<script>
+function openPdf(title, src){
+ const modal=document.getElementById('pdfModal');
+ document.getElementById('modalTitle').textContent=title;
+ document.getElementById('pdfFrame').src=src;
+ document.getElementById('pdfNew').href=src;
+ modal.classList.add('show');
+ document.body.classList.add('modal-open');
+}
+function closePdf(){
+ const modal=document.getElementById('pdfModal');
+ document.getElementById('pdfFrame').src='';
+ modal.classList.remove('show');
+ document.body.classList.remove('modal-open');
+}
+function backdropClose(e){if(e.target.id==='pdfModal')closePdf()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf()});
+</script>
 </body>
 </html>
